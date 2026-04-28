@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -471,3 +472,1342 @@
     font-size: 13px;
     line-height: 1.7;
   }
+  .chat-bubble.ai {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    color: var(--text);
+  }
+  .chat-bubble.user {
+    background: rgba(200,245,90,0.15);
+    border: 1px solid rgba(200,245,90,0.3);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    color: var(--text);
+  }
+  .chat-input-wrap {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+  }
+  .chat-input {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 13px;
+    font-family: 'Noto Sans JP', sans-serif;
+    outline: none;
+    resize: none;
+    max-height: 80px;
+  }
+  .chat-input:focus { border-color: var(--accent); }
+  .chat-send-btn {
+    background: var(--accent);
+    border: none;
+    color: #000;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .ai-result {
+    background: rgba(200,245,90,0.08);
+    border: 1px solid rgba(200,245,90,0.3);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--text2);
+    display: none;
+  }
+  .ai-result.show { display: block; }
+  .ai-result strong { color: var(--accent); }
+
+  /* Input fields */
+  .input-group { margin-bottom: 12px; }
+  .input-label { font-size: 12px; color: var(--text2); margin-bottom: 6px; }
+  .input-field {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: 'Noto Sans JP', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .input-field:focus { border-color: var(--accent); }
+  .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  /* Submit btn */
+  .submit-btn {
+    width: 100%;
+    background: var(--accent);
+    border: none;
+    color: #000;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: opacity 0.2s;
+    margin-top: 4px;
+  }
+  .submit-btn:active { opacity: 0.8; }
+
+  /* Chart */
+  canvas { width: 100% !important; }
+  .chart-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .chart-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--text2);
+  }
+
+  /* Weight input card */
+  .weight-input-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .weight-big-display {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin: 8px 0;
+  }
+  .weight-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 12px;
+  }
+  .weight-controls input {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 18px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+  }
+  .weight-controls input:focus { border-color: var(--accent); }
+  .weight-save-btn {
+    background: var(--accent);
+    border: none;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+  }
+
+  /* Goal progress */
+  .goal-card {
+    background: linear-gradient(135deg, rgba(200,245,90,0.1), rgba(200,245,90,0.02));
+    border: 1px solid rgba(200,245,90,0.3);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .goal-numbers {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+  }
+  .goal-from { font-size: 20px; color: var(--text2); }
+  .goal-arrow { color: var(--accent); font-size: 18px; }
+  .goal-to {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .goal-remaining {
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 4px;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text3);
+  }
+  .empty-state .empty-icon { font-size: 40px; margin-bottom: 8px; }
+  .empty-state p { font-size: 13px; }
+
+  /* Loading spinner */
+  .spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(200,245,90,0.3);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Drink log detail */
+  .drink-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: flex-end;
+  }
+  .drink-row .input-group { flex: 1; margin-bottom: 0; }
+
+  /* Exercise */
+  .exercise-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .preset-tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .preset-tag:hover {
+    border-color: var(--accent2);
+    color: var(--accent2);
+  }
+
+  /* Bottom nav */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 430px;
+    background: rgba(15,15,15,0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+    display: flex;
+    padding: 8px 0 12px;
+    z-index: 150;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    padding: 4px 0;
+    background: none;
+    border: none;
+    color: var(--text3);
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: color 0.2s;
+  }
+  .nav-item.active { color: var(--accent); }
+  .nav-icon { font-size: 20px; }
+  .nav-label { font-size: 10px; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    z-index: 500;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="logo">BODY<span>LOG</span></div>
+    <div class="date-nav">
+      <button onclick="changeDate(-1)">‹</button>
+      <div class="date-display" id="dateDisplay"></div>
+      <button onclick="changeDate(1)">›</button>
+    </div>
+  </div>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showPage('home',this)">ホーム</button>
+    <button class="tab-btn" onclick="showPage('food',this)">食事</button>
+    <button class="tab-btn" onclick="showPage('drink',this)">飲酒</button>
+    <button class="tab-btn" onclick="showPage('exercise',this)">筋トレ</button>
+    <button class="tab-btn" onclick="showPage('weight',this)">体重</button>
+    <button class="tab-btn" onclick="showPage('ai',this)">🤖 AI</button>
+  </div>
+</div>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="card-label">摂取カロリー</div>
+      <div class="card-value" id="totalCalIn">0<span class="card-unit">kcal</span></div>
+      <div class="progress-wrap">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2)">
+          <span>目標 1,800kcal</span>
+          <span id="calPercent">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="calBar" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="card-label">消費カロリー</div>
+      <div class="card-value negative" id="totalCalOut" style="color:var(--accent2)">0<span class="card-unit">kcal</span></div>
+      <div style="font-size:11px;color:var(--text2);margin-top:8px">筋トレ消費</div>
+    </div>
+    <div class="summary-card">
+      <div class="card-label">アルコール</div>
+      <div class="card-value" id="totalAlcohol">0<span class="card-unit">杯</span></div>
+      <div style="font-size:11px;color:var(--text2);margin-top:4px" id="alcoholCal">0 kcal</div>
+    </div>
+    <div class="summary-card">
+      <div class="card-label">NET カロリー</div>
+      <div class="card-value" id="netCal">0<span class="card-unit">kcal</span></div>
+    </div>
+    <div class="summary-card wide">
+      <div class="card-label">体重推移（直近7日）</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+        <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:700;color:var(--accent)" id="todayWeight">—</div>
+        <div style="font-size:13px;color:var(--text2)">kg</div>
+        <div style="margin-left:auto;font-size:12px;color:var(--text2)" id="weightDiff"></div>
+      </div>
+      <div class="weight-mini" id="weightMini"></div>
+    </div>
+  </div>
+
+  <div class="section-title">今日のログ</div>
+  <div class="log-list" id="todayLog">
+    <div class="empty-state">
+      <div class="empty-icon">📋</div>
+      <p>まだ記録がありません<br>＋ボタンで追加しましょう</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD PAGE -->
+<div class="page" id="page-food">
+  <div class="section-title">食事ログ</div>
+  <div class="log-list" id="foodLog"></div>
+</div>
+
+<!-- DRINK PAGE -->
+<div class="page" id="page-drink">
+  <div class="section-title">飲酒ログ</div>
+  <div class="log-list" id="drinkLog"></div>
+</div>
+
+<!-- EXERCISE PAGE -->
+<div class="page" id="page-exercise">
+  <div class="section-title">筋トレログ</div>
+  <div class="log-list" id="exerciseLog"></div>
+</div>
+
+<!-- WEIGHT PAGE -->
+<div class="page" id="page-weight">
+  <div class="goal-card">
+    <div class="card-label">目標体重</div>
+    <div class="goal-numbers">
+      <div class="goal-from" id="goalFrom">75kg</div>
+      <div class="goal-arrow">→</div>
+      <div class="goal-to">68kg</div>
+    </div>
+    <div class="goal-remaining" id="goalRemaining">あと —kg</div>
+    <div class="progress-bar" style="margin-top:10px">
+      <div class="progress-fill" id="goalBar" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="weight-input-card">
+    <div class="card-label">今日の体重</div>
+    <div class="weight-big-display" id="weightDisplay">— kg</div>
+    <div class="weight-controls">
+      <input type="number" id="weightInput" placeholder="75.0" step="0.1" min="40" max="200">
+      <button class="weight-save-btn" onclick="saveWeight()">記録</button>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">体重推移</div>
+    <canvas id="weightChart" height="150"></canvas>
+  </div>
+</div>
+
+<!-- AI ADVICE PAGE -->
+<div class="page" id="page-ai">
+  <div class="ai-advice-card">
+    <div class="ai-advice-header">
+      <div class="ai-avatar">🤖</div>
+      <div>
+        <div class="ai-name">BODY<span>LOG</span> AI</div>
+        <div style="font-size:11px;color:var(--text3)">あなた専属のダイエットコーチ</div>
+      </div>
+    </div>
+    <div class="ai-advice-body" id="aiGreeting">
+      今日の記録をもとに、ワンタップでアドバイスをもらえます。気になることは直接質問もできます！
+    </div>
+  </div>
+
+  <div class="advice-type-grid">
+    <div class="advice-type-card selected" onclick="selectAdviceType('today', this)">
+      <div class="atc-icon">📊</div>
+      <div class="atc-label">今日の分析</div>
+      <div class="atc-desc">食事・カロリーを評価</div>
+    </div>
+    <div class="advice-type-card" onclick="selectAdviceType('tomorrow', this)">
+      <div class="atc-icon">🎯</div>
+      <div class="atc-label">明日の作戦</div>
+      <div class="atc-desc">明日やること提案</div>
+    </div>
+    <div class="advice-type-card" onclick="selectAdviceType('alcohol', this)">
+      <div class="atc-icon">🥃</div>
+      <div class="atc-label">飲酒アドバイス</div>
+      <div class="atc-desc">お酒との付き合い方</div>
+    </div>
+    <div class="advice-type-card" onclick="selectAdviceType('week', this)">
+      <div class="atc-icon">📈</div>
+      <div class="atc-label">週間レビュー</div>
+      <div class="atc-desc">1週間の傾向分析</div>
+    </div>
+  </div>
+
+  <button class="advice-btn" id="getAdviceBtn" onclick="getAdvice()">
+    <span>🤖 AIアドバイスをもらう</span>
+  </button>
+
+  <div class="section-title">AIコーチと話す</div>
+  <div class="chat-area" id="chatArea"></div>
+  <div class="chat-input-wrap">
+    <textarea class="chat-input" id="chatInput" rows="1" placeholder="質問を入力...（例：お酒を減らすコツは？）" onkeydown="chatKeydown(event)"></textarea>
+    <button class="chat-send-btn" id="chatSendBtn" onclick="sendChat()">↑</button>
+  </div>
+</div>
+
+<!-- COPY CODE OVERLAY -->
+<div style="position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:250;width:calc(100% - 40px);max-width:390px">
+  <button onclick="copyAllCode()" id="copyCodeBtn" style="width:100%;background:#1a1a1a;border:1px solid #c8f55a;color:#c8f55a;padding:14px;border-radius:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.5)">
+    <span>📋</span><span id="copyBtnLabel">GitHubに貼るコードをコピー</span>
+  </button>
+</div>
+
+<!-- FAB -->
+<button class="fab" onclick="openModal()">＋</button>
+
+<!-- Bottom Nav -->
+<div class="bottom-nav">
+  <button class="nav-item active" onclick="showPage('home',null,this)">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">ホーム</span>
+  </button>
+  <button class="nav-item" onclick="showPage('food',null,this)">
+    <span class="nav-icon">🍱</span>
+    <span class="nav-label">食事</span>
+  </button>
+  <button class="nav-item" onclick="showPage('drink',null,this)">
+    <span class="nav-icon">🥃</span>
+    <span class="nav-label">飲酒</span>
+  </button>
+  <button class="nav-item" onclick="showPage('exercise',null,this)">
+    <span class="nav-icon">💪</span>
+    <span class="nav-label">筋トレ</span>
+  </button>
+  <button class="nav-item" onclick="showPage('weight',null,this)">
+    <span class="nav-icon">⚖️</span>
+    <span class="nav-label">体重</span>
+  </button>
+  <button class="nav-item" onclick="showPage('ai',null,this)">
+    <span class="nav-icon">🤖</span>
+    <span class="nav-label">AI</span>
+  </button>
+</div>
+
+<!-- ADD MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">記録を追加</div>
+
+    <div class="type-selector">
+      <div class="type-btn selected" onclick="selectType('food',this)">
+        <span class="emoji">🍱</span>
+        <span class="label">食事</span>
+      </div>
+      <div class="type-btn" onclick="selectType('drink',this)">
+        <span class="emoji">🥃</span>
+        <span class="label">飲酒</span>
+      </div>
+      <div class="type-btn" onclick="selectType('exercise',this)">
+        <span class="emoji">💪</span>
+        <span class="label">筋トレ</span>
+      </div>
+      <div class="type-btn" onclick="selectType('note',this)">
+        <span class="emoji">📝</span>
+        <span class="label">メモ</span>
+      </div>
+    </div>
+
+    <!-- FOOD FORM -->
+    <div id="form-food">
+      <div class="photo-area" id="photoArea" onclick="document.getElementById('photoInput').click()">
+        <div class="photo-placeholder">
+          <div class="ph-icon">📸</div>
+          <p>写真をタップして追加<br><span style="font-size:11px;color:var(--text3)">AIが自動でカロリーを推定します</span></p>
+        </div>
+      </div>
+      <input type="file" id="photoInput" accept="image/*" capture="environment" onchange="onPhotoSelect(event)">
+      <button class="analyze-btn" id="analyzeBtn" onclick="analyzePhoto()" disabled>
+        <span>🤖 AIでカロリーを分析</span>
+      </button>
+      <div class="ai-result" id="aiResult"></div>
+      <div class="input-group">
+        <div class="input-label">食事名</div>
+        <input class="input-field" id="foodName" placeholder="例：サラダチキン、白米など">
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <div class="input-label">カロリー (kcal)</div>
+          <input class="input-field" id="foodCal" type="number" placeholder="500">
+        </div>
+        <div class="input-group">
+          <div class="input-label">たんぱく質 (g)</div>
+          <input class="input-field" id="foodProtein" type="number" placeholder="20">
+        </div>
+      </div>
+    </div>
+
+    <!-- DRINK FORM -->
+    <div id="form-drink" style="display:none">
+      <div class="input-group">
+        <div class="input-label">お酒の種類</div>
+        <select class="input-field" id="drinkType">
+          <option value="焼酎">焼酎 (1杯 約100kcal)</option>
+          <option value="ビール">ビール 350ml (約140kcal)</option>
+          <option value="ハイボール">ハイボール (約80kcal)</option>
+          <option value="日本酒">日本酒 1合 (約180kcal)</option>
+          <option value="ワイン">ワイン 1杯 (約90kcal)</option>
+          <option value="ウイスキー">ウイスキー 1杯 (約70kcal)</option>
+          <option value="チューハイ">チューハイ (約150kcal)</option>
+        </select>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <div class="input-label">杯数</div>
+          <input class="input-field" id="drinkCount" type="number" placeholder="3" value="1">
+        </div>
+        <div class="input-group">
+          <div class="input-label">カロリー/杯</div>
+          <input class="input-field" id="drinkCalPer" type="number" placeholder="100">
+        </div>
+      </div>
+    </div>
+
+    <!-- EXERCISE FORM -->
+    <div id="form-exercise" style="display:none">
+      <div class="exercise-presets">
+        <div class="preset-tag" onclick="setExercise('ベンチプレス',200)">🏋️ ベンチプレス</div>
+        <div class="preset-tag" onclick="setExercise('スクワット',250)">🦵 スクワット</div>
+        <div class="preset-tag" onclick="setExercise('デッドリフト',300)">💪 デッドリフト</div>
+        <div class="preset-tag" onclick="setExercise('ランニング',300)">🏃 ランニング</div>
+        <div class="preset-tag" onclick="setExercise('全身トレーニング',400)">🔥 全身</div>
+        <div class="preset-tag" onclick="setExercise('ウォーキング',150)">🚶 ウォーキング</div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">種目</div>
+        <input class="input-field" id="exerciseName" placeholder="種目名">
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <div class="input-label">時間 (分)</div>
+          <input class="input-field" id="exerciseMin" type="number" placeholder="60">
+        </div>
+        <div class="input-group">
+          <div class="input-label">消費kcal</div>
+          <input class="input-field" id="exerciseCal" type="number" placeholder="300">
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTE FORM -->
+    <div id="form-note" style="display:none">
+      <div class="input-group">
+        <div class="input-label">メモ</div>
+        <textarea class="input-field" id="noteText" rows="4" placeholder="体調、食欲、モチベーションなど"></textarea>
+      </div>
+    </div>
+
+    <button class="submit-btn" onclick="addEntry()">記録する</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// DATA STORE
+// ============================================================
+let currentType = 'food';
+let selectedPhoto = null;
+let selectedPhotoDataUrl = null;
+let currentDate = new Date();
+currentDate.setHours(0,0,0,0);
+
+function dateKey(d) {
+  return d.toISOString().slice(0,10);
+}
+
+function getData() {
+  try { return JSON.parse(localStorage.getItem('bodylog') || '{}'); } catch(e) { return {}; }
+}
+function saveData(d) {
+  localStorage.setItem('bodylog', JSON.stringify(d));
+}
+
+function getDayData(d) {
+  const data = getData();
+  const key = dateKey(d);
+  if (!data[key]) data[key] = { entries: [], weight: null };
+  return data[key];
+}
+
+function saveDayData(d, dayData) {
+  const data = getData();
+  data[dateKey(d)] = dayData;
+  saveData(data);
+}
+
+// ============================================================
+// DATE NAV
+// ============================================================
+function updateDateDisplay() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const diff = Math.round((currentDate - today) / 86400000);
+  let label;
+  if (diff === 0) label = '今日';
+  else if (diff === -1) label = '昨日';
+  else {
+    label = `${currentDate.getMonth()+1}/${currentDate.getDate()}`;
+  }
+  document.getElementById('dateDisplay').textContent = label;
+}
+
+function changeDate(dir) {
+  currentDate.setDate(currentDate.getDate() + dir);
+  updateDateDisplay();
+  renderAll();
+}
+
+// ============================================================
+// PAGE NAV
+// ============================================================
+let activePage = 'home';
+function showPage(name, tabBtn, navBtn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  activePage = name;
+
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+
+  const pages = ['home','food','drink','exercise','weight','ai'];
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const navItems = document.querySelectorAll('.nav-item');
+  const idx = pages.indexOf(name);
+  if (tabBtns[idx]) tabBtns[idx].classList.add('active');
+  if (navItems[idx]) navItems[idx].classList.add('active');
+
+  if (name === 'weight') renderWeightChart();
+  renderAll();
+}
+
+// ============================================================
+// MODAL
+// ============================================================
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('open');
+  selectType(activePage === 'home' ? 'food' : activePage, document.querySelector('.type-btn'));
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  resetModal();
+}
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+function resetModal() {
+  selectedPhoto = null;
+  selectedPhotoDataUrl = null;
+  document.getElementById('photoArea').innerHTML = `<div class="photo-placeholder"><div class="ph-icon">📸</div><p>写真をタップして追加<br><span style="font-size:11px;color:var(--text3)">AIが自動でカロリーを推定します</span></p></div>`;
+  document.getElementById('photoArea').className = 'photo-area';
+  document.getElementById('analyzeBtn').disabled = true;
+  document.getElementById('aiResult').className = 'ai-result';
+  document.getElementById('aiResult').innerHTML = '';
+  ['foodName','foodCal','foodProtein','drinkCount','exerciseName','exerciseMin','exerciseCal','noteText'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
+
+function selectType(type, btn) {
+  currentType = type;
+  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('selected'));
+
+  // find the right btn
+  const allTypeBtns = document.querySelectorAll('.type-btn');
+  const types = ['food','drink','exercise','note'];
+  allTypeBtns[types.indexOf(type)]?.classList.add('selected');
+
+  ['food','drink','exercise','note'].forEach(t => {
+    document.getElementById('form-' + t).style.display = t === type ? 'block' : 'none';
+  });
+}
+
+// ============================================================
+// PHOTO & AI ANALYSIS
+// ============================================================
+function onPhotoSelect(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  selectedPhoto = file;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    selectedPhotoDataUrl = ev.target.result;
+    document.getElementById('photoArea').innerHTML = `<img src="${selectedPhotoDataUrl}">`;
+    document.getElementById('photoArea').className = 'photo-area has-image';
+    document.getElementById('analyzeBtn').disabled = false;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function analyzePhoto() {
+  if (!selectedPhotoDataUrl) return;
+  const btn = document.getElementById('analyzeBtn');
+  btn.innerHTML = '<div class="spinner"></div> 分析中...';
+  btn.disabled = true;
+
+  try {
+    const base64 = selectedPhotoDataUrl.split(',')[1];
+    const mediaType = selectedPhotoDataUrl.split(';')[0].split(':')[1];
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 500,
+        messages: [{
+          role: 'user',
+          content: [
+            { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
+            { type: 'text', text: 'この食事の写真を見て、以下をJSON形式のみで返してください（前置き・コードブロック不要）:\n{"name":"食事名","calories":数値,"protein":数値,"description":"簡単な説明"}' }
+          ]
+        }]
+      })
+    });
+
+    const data = await response.json();
+    const text = data.content?.find(c => c.type === 'text')?.text || '';
+    const clean = text.replace(/```json|```/g, '').trim();
+    const result = JSON.parse(clean);
+
+    document.getElementById('foodName').value = result.name || '';
+    document.getElementById('foodCal').value = result.calories || '';
+    document.getElementById('foodProtein').value = result.protein || '';
+
+    const aiEl = document.getElementById('aiResult');
+    aiEl.innerHTML = `<strong>🤖 AI推定結果</strong><br>${result.description || ''}<br>カロリー: <strong>${result.calories} kcal</strong> / たんぱく質: <strong>${result.protein}g</strong>`;
+    aiEl.classList.add('show');
+
+  } catch(e) {
+    const aiEl = document.getElementById('aiResult');
+    aiEl.innerHTML = '分析に失敗しました。手動で入力してください。';
+    aiEl.classList.add('show');
+  }
+
+  btn.innerHTML = '<span>🤖 AIでカロリーを分析</span>';
+  btn.disabled = false;
+}
+
+// ============================================================
+// EXERCISE PRESETS
+// ============================================================
+function setExercise(name, cal) {
+  document.getElementById('exerciseName').value = name;
+  document.getElementById('exerciseCal').value = cal;
+}
+
+// ============================================================
+// ADD ENTRY
+// ============================================================
+function addEntry() {
+  const dayData = getDayData(currentDate);
+  const now = new Date();
+  const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+  let entry = { id: Date.now(), type: currentType, time: timeStr };
+
+  if (currentType === 'food') {
+    const name = document.getElementById('foodName').value.trim();
+    const cal = parseInt(document.getElementById('foodCal').value) || 0;
+    if (!name && !cal) { showToast('食事名またはカロリーを入力してください'); return; }
+    entry.name = name || '食事';
+    entry.calories = cal;
+    entry.protein = parseInt(document.getElementById('foodProtein').value) || 0;
+    entry.photo = selectedPhotoDataUrl;
+
+  } else if (currentType === 'drink') {
+    const drinkType = document.getElementById('drinkType').value;
+    const count = parseInt(document.getElementById('drinkCount').value) || 1;
+    const calPer = parseInt(document.getElementById('drinkCalPer').value) || getDrinkDefaultCal(drinkType);
+    entry.name = `${drinkType} ×${count}杯`;
+    entry.drinkType = drinkType;
+    entry.count = count;
+    entry.calories = calPer * count;
+
+  } else if (currentType === 'exercise') {
+    const name = document.getElementById('exerciseName').value.trim();
+    const min = parseInt(document.getElementById('exerciseMin').value) || 0;
+    const cal = parseInt(document.getElementById('exerciseCal').value) || 0;
+    if (!name) { showToast('種目名を入力してください'); return; }
+    entry.name = name;
+    entry.minutes = min;
+    entry.calories = cal;
+
+  } else if (currentType === 'note') {
+    const text = document.getElementById('noteText').value.trim();
+    if (!text) { showToast('メモを入力してください'); return; }
+    entry.name = text;
+    entry.calories = 0;
+  }
+
+  dayData.entries.push(entry);
+  saveDayData(currentDate, dayData);
+  closeModal();
+  renderAll();
+  showToast('記録しました ✓');
+}
+
+function getDrinkDefaultCal(type) {
+  const map = { '焼酎':100,'ビール':140,'ハイボール':80,'日本酒':180,'ワイン':90,'ウイスキー':70,'チューハイ':150 };
+  return map[type] || 100;
+}
+
+// ============================================================
+// DELETE ENTRY
+// ============================================================
+function deleteEntry(id) {
+  const dayData = getDayData(currentDate);
+  dayData.entries = dayData.entries.filter(e => e.id !== id);
+  saveDayData(currentDate, dayData);
+  renderAll();
+  showToast('削除しました');
+}
+
+// ============================================================
+// WEIGHT
+// ============================================================
+function saveWeight() {
+  const val = parseFloat(document.getElementById('weightInput').value);
+  if (!val || val < 30 || val > 300) { showToast('体重を正しく入力してください'); return; }
+  const dayData = getDayData(currentDate);
+  dayData.weight = val;
+  saveDayData(currentDate, dayData);
+  renderAll();
+  renderWeightChart();
+  showToast(`${val}kg を記録しました ✓`);
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function renderAll() {
+  const dayData = getDayData(currentDate);
+  const entries = dayData.entries || [];
+
+  const foodEntries = entries.filter(e => e.type === 'food');
+  const drinkEntries = entries.filter(e => e.type === 'drink');
+  const exerciseEntries = entries.filter(e => e.type === 'exercise');
+
+  const totalCalIn = foodEntries.reduce((s,e) => s + (e.calories||0), 0)
+    + drinkEntries.reduce((s,e) => s + (e.calories||0), 0);
+  const totalCalOut = exerciseEntries.reduce((s,e) => s + (e.calories||0), 0);
+  const alcoholCups = drinkEntries.reduce((s,e) => s + (e.count||0), 0);
+  const alcoholCal = drinkEntries.reduce((s,e) => s + (e.calories||0), 0);
+  const netCal = totalCalIn - totalCalOut;
+
+  const goal = 1800;
+  const pct = Math.min(Math.round(totalCalIn / goal * 100), 100);
+  const over = totalCalIn > goal;
+
+  document.getElementById('totalCalIn').innerHTML = `${totalCalIn.toLocaleString()}<span class="card-unit">kcal</span>`;
+  document.getElementById('totalCalOut').innerHTML = `${totalCalOut.toLocaleString()}<span class="card-unit">kcal</span>`;
+  document.getElementById('totalAlcohol').innerHTML = `${alcoholCups}<span class="card-unit">杯</span>`;
+  document.getElementById('alcoholCal').textContent = `${alcoholCal} kcal`;
+  document.getElementById('netCal').innerHTML = `${netCal.toLocaleString()}<span class="card-unit">kcal</span>`;
+  document.getElementById('calPercent').textContent = pct + '%';
+  const bar = document.getElementById('calBar');
+  bar.style.width = pct + '%';
+  bar.className = 'progress-fill' + (over ? ' danger' : '');
+
+  // weight display
+  const w = dayData.weight;
+  document.getElementById('todayWeight').textContent = w ? w.toFixed(1) : '—';
+  document.getElementById('weightDisplay').textContent = w ? w.toFixed(1) + ' kg' : '— kg';
+  if (w) document.getElementById('weightInput').value = w;
+
+  // goal progress
+  const startW = 75, goalW = 68;
+  if (w) {
+    const progress = Math.max(0, Math.min(100, (startW - w) / (startW - goalW) * 100));
+    document.getElementById('goalBar').style.width = progress + '%';
+    document.getElementById('goalRemaining').textContent = `あと ${Math.max(0, w - goalW).toFixed(1)}kg`;
+    document.getElementById('goalFrom').textContent = startW + 'kg';
+  }
+
+  // weight mini chart
+  const miniEl = document.getElementById('weightMini');
+  miniEl.innerHTML = '';
+  const weights = getLast7Weights();
+  const maxW2 = Math.max(...weights.filter(Boolean), 75);
+  const minW2 = Math.min(...weights.filter(Boolean), 68);
+  const range = Math.max(maxW2 - minW2, 2);
+  weights.forEach((ww, i) => {
+    const bar2 = document.createElement('div');
+    bar2.className = 'weight-bar' + (i === 6 ? ' today' : '');
+    const h = ww ? Math.max(20, ((ww - minW2) / range) * 30 + 10) : 4;
+    bar2.style.height = h + 'px';
+    miniEl.appendChild(bar2);
+  });
+
+  // weight diff
+  const prev = getLast7Weights()[5];
+  if (w && prev) {
+    const diff = w - prev;
+    const sign = diff > 0 ? '+' : '';
+    document.getElementById('weightDiff').textContent = `前日比 ${sign}${diff.toFixed(1)}kg`;
+  }
+
+  // render logs
+  renderLogList('todayLog', entries);
+  renderLogList('foodLog', foodEntries);
+  renderLogList('drinkLog', drinkEntries);
+  renderLogList('exerciseLog', exerciseEntries);
+}
+
+function getLast7Weights() {
+  const data = getData();
+  const result = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(currentDate);
+    d.setDate(d.getDate() - i);
+    const key = dateKey(d);
+    result.push(data[key]?.weight || null);
+  }
+  return result;
+}
+
+function renderLogList(containerId, entries) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  if (entries.length === 0) {
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">📋</div><p>まだ記録がありません</p></div>`;
+    return;
+  }
+  el.innerHTML = entries.map(entry => {
+    const icons = { food:'🍱', drink:'🥃', exercise:'💪', note:'📝' };
+    const iconBg = { food:'food', drink:'drink', exercise:'exercise', note:'food' };
+    const isNeg = entry.type === 'exercise';
+    const calDisplay = entry.calories ? (isNeg ? `-${entry.calories}` : `+${entry.calories}`) : '';
+    const photoHtml = entry.photo
+      ? `<img src="${entry.photo}" style="width:40px;height:40px;object-fit:cover;border-radius:10px">`
+      : icons[entry.type] || '📋';
+
+    return `<div class="log-item">
+      <div class="log-icon ${iconBg[entry.type]}">${entry.photo ? `<img src="${entry.photo}">` : (icons[entry.type]||'📋')}</div>
+      <div class="log-info">
+        <div class="log-name">${entry.name}</div>
+        <div class="log-time">${entry.time}${entry.protein ? ` · P ${entry.protein}g` : ''}${entry.minutes ? ` · ${entry.minutes}分` : ''}</div>
+      </div>
+      ${calDisplay ? `<div class="log-cal${isNeg?' negative':''}">${calDisplay}<span style="font-size:11px">kcal</span></div>` : ''}
+      <button class="delete-btn" onclick="deleteEntry(${entry.id})">✕</button>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// WEIGHT CHART
+// ============================================================
+let chartInstance = null;
+function renderWeightChart() {
+  const data = getData();
+  const labels = [];
+  const values = [];
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const key = dateKey(d);
+    labels.push(`${d.getMonth()+1}/${d.getDate()}`);
+    values.push(data[key]?.weight || null);
+  }
+
+  const canvas = document.getElementById('weightChart');
+  const ctx = canvas.getContext('2d');
+
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+
+  // Simple canvas chart
+  const W = canvas.parentElement.clientWidth - 32;
+  const H = 150;
+  canvas.width = W;
+  canvas.height = H;
+  ctx.clearRect(0,0,W,H);
+
+  const validVals = values.filter(Boolean);
+  if (validVals.length < 1) {
+    ctx.fillStyle = '#555';
+    ctx.font = '13px Noto Sans JP';
+    ctx.textAlign = 'center';
+    ctx.fillText('体重を記録すると推移が表示されます', W/2, H/2);
+    return;
+  }
+
+  const maxV = Math.max(...validVals) + 1;
+  const minV = Math.min(...validVals, 68) - 1;
+  const range = maxV - minV;
+  const padL = 36, padR = 10, padT = 10, padB = 24;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+
+  // Grid lines
+  const gridLines = 4;
+  ctx.strokeStyle = '#2e2e2e';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= gridLines; i++) {
+    const y = padT + (i / gridLines) * chartH;
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    const val = maxV - (i / gridLines) * range;
+    ctx.fillStyle = '#555';
+    ctx.font = '10px Syne';
+    ctx.textAlign = 'right';
+    ctx.fillText(val.toFixed(1), padL - 4, y + 4);
+  }
+
+  // Goal line (68kg)
+  const goalY = padT + ((maxV - 68) / range) * chartH;
+  ctx.strokeStyle = 'rgba(255,107,74,0.4)';
+  ctx.setLineDash([4,4]);
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(padL, goalY); ctx.lineTo(W - padR, goalY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(255,107,74,0.7)';
+  ctx.font = '10px Syne';
+  ctx.textAlign = 'left';
+  ctx.fillText('目標 68kg', padL + 4, goalY - 3);
+
+  // Line
+  const step = chartW / (labels.length - 1);
+  let prevX = null, prevY = null;
+
+  // Gradient fill
+  const gradient = ctx.createLinearGradient(0, padT, 0, padT + chartH);
+  gradient.addColorStop(0, 'rgba(200,245,90,0.3)');
+  gradient.addColorStop(1, 'rgba(200,245,90,0)');
+
+  ctx.beginPath();
+  let firstPoint = true;
+  values.forEach((v, i) => {
+    if (v === null) return;
+    const x = padL + i * step;
+    const y = padT + ((maxV - v) / range) * chartH;
+    if (firstPoint) { ctx.moveTo(x, y); firstPoint = false; }
+    else ctx.lineTo(x, y);
+  });
+  const lastValid = values.map((v,i)=>v!==null?i:null).filter(i=>i!==null).pop();
+  if (lastValid !== undefined) {
+    const lx = padL + lastValid * step;
+    ctx.lineTo(lx, padT + chartH);
+    ctx.lineTo(padL + (values.findIndex(v=>v!==null)) * step, padT + chartH);
+    ctx.closePath();
+    ctx.fillStyle = gradient;
+    ctx.fill();
+  }
+
+  ctx.beginPath();
+  firstPoint = true;
+  values.forEach((v, i) => {
+    if (v === null) return;
+    const x = padL + i * step;
+    const y = padT + ((maxV - v) / range) * chartH;
+    if (firstPoint) { ctx.moveTo(x, y); firstPoint = false; }
+    else ctx.lineTo(x, y);
+  });
+  ctx.strokeStyle = '#c8f55a';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Dots
+  values.forEach((v, i) => {
+    if (v === null) return;
+    const x = padL + i * step;
+    const y = padT + ((maxV - v) / range) * chartH;
+    ctx.beginPath();
+    ctx.arc(x, y, 3, 0, Math.PI * 2);
+    ctx.fillStyle = '#c8f55a';
+    ctx.fill();
+  });
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ============================================================
+// DRINK DEFAULT CAL
+// ============================================================
+document.getElementById('drinkType').addEventListener('change', function() {
+  document.getElementById('drinkCalPer').value = getDrinkDefaultCal(this.value);
+});
+
+// ============================================================
+// AI ADVICE
+// ============================================================
+let selectedAdviceType = 'today';
+let chatHistory = [];
+let isAiLoading = false;
+
+function selectAdviceType(type, el) {
+  selectedAdviceType = type;
+  document.querySelectorAll('.advice-type-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function buildContext() {
+  const data = getData();
+  const today = getDayData(currentDate);
+  const entries = today.entries || [];
+  const foodEntries = entries.filter(e => e.type === 'food');
+  const drinkEntries = entries.filter(e => e.type === 'drink');
+  const exerciseEntries = entries.filter(e => e.type === 'exercise');
+  const totalCalIn = [...foodEntries, ...drinkEntries].reduce((s,e) => s+(e.calories||0), 0);
+  const totalCalOut = exerciseEntries.reduce((s,e) => s+(e.calories||0), 0);
+  const alcoholCups = drinkEntries.reduce((s,e) => s+(e.count||0), 0);
+
+  // 7日分の体重
+  const weights = getLast7Weights().filter(Boolean);
+  const latestWeight = today.weight || weights[weights.length-1];
+
+  // 週間データ
+  let weekCalories = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(currentDate); d.setDate(d.getDate()-i);
+    const dd = data[dateKey(d)];
+    if (dd) {
+      const cal = (dd.entries||[]).reduce((s,e) => e.type!=='exercise' ? s+(e.calories||0) : s, 0);
+      weekCalories.push(cal);
+    }
+  }
+
+  return {
+    今日の日付: new Date().toLocaleDateString('ja-JP'),
+    目標体重: '68kg',
+    現在体重: latestWeight ? latestWeight + 'kg' : '未記録',
+    今日の摂取カロリー: totalCalIn + 'kcal',
+    今日の消費カロリー: totalCalOut + 'kcal',
+    今日のNETカロリー: (totalCalIn - totalCalOut) + 'kcal',
+    今日の食事: foodEntries.map(e => `${e.name}(${e.calories}kcal)`).join('、') || 'なし',
+    今日の飲酒: drinkEntries.length > 0 ? drinkEntries.map(e=>e.name).join('、') : 'なし',
+    今日の筋トレ: exerciseEntries.length > 0 ? exerciseEntries.map(e=>e.name).join('、') : 'なし',
+    週間平均カロリー: weekCalories.length > 0 ? Math.round(weekCalories.reduce((a,b)=>a+b,0)/weekCalories.length) + 'kcal' : '未記録',
+    ユーザー情報: '35-50代男性、週3回焼酎3-5杯飲む、筋トレをしている、75kgから68kgを目標',
+  };
+}
+
+async function getAdvice() {
+  if (isAiLoading) return;
+  isAiLoading = true;
+  const btn = document.getElementById('getAdviceBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div> 分析中...';
+
+  const typePrompts = {
+    today: '今日の食事・運動・飲酒の記録を見て、ダイエット的に良かった点と改善点を具体的に教えてください。',
+    tomorrow: '今日の記録をもとに、明日やるべきことを3つ具体的に提案してください。',
+    alcohol: 'このユーザーの飲酒習慣を見て、ダイエットしながらお酒を楽しむための具体的なアドバイスをください。',
+    week: '週間データをもとに、体重・カロリーの傾向を分析して、目標達成に向けたアドバイスをください。',
+  };
+
+  const ctx = buildContext();
+  const prompt = `あなたは親切で具体的なダイエットコーチです。以下のユーザーデータを見てアドバイスをください。\n\nユーザーデータ:\n${JSON.stringify(ctx, null, 2)}\n\n${typePrompts[selectedAdviceType]}\n\n日本語で、200文字以内で簡潔に、絵文字を適度に使って答えてください。`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.find(c => c.type==='text')?.text || 'アドバイスを取得できませんでした。';
+
+    addChatBubble('ai', text);
+    chatHistory.push({ role: 'assistant', content: text });
+  } catch(e) {
+    addChatBubble('ai', '⚠️ 通信エラーが発生しました。インターネット接続を確認してください。');
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<span>🤖 AIアドバイスをもらう</span>';
+  isAiLoading = false;
+}
+
+async function sendChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg || isAiLoading) return;
+  input.value = '';
+  isAiLoading = true;
+
+  addChatBubble('user', msg);
+  chatHistory.push({ role: 'user', content: msg });
+
+  document.getElementById('chatSendBtn').disabled = true;
+  addChatBubble('ai', '<div class="spinner"></div> 考え中...', 'thinking');
+
+  const ctx = buildContext();
+  const systemPrompt = `あなたは親切で具体的なダイエットコーチです。ユーザーデータ: ${JSON.stringify(ctx)}。日本語で150文字以内、絵文字適度に使って答えてください。`;
+
+  const messages = [
+    { role: 'user', content: systemPrompt + '\n\n' + (chatHistory[0]?.content || msg) },
+    ...chatHistory.slice(1)
+  ];
+  if (chatHistory.length === 1) messages[0].content = systemPrompt + '\n\n' + msg;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 300,
+        system: systemPrompt,
+        messages: chatHistory
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.find(c => c.type==='text')?.text || '回答できませんでした。';
+    removeBubble('thinking');
+    addChatBubble('ai', text);
+    chatHistory.push({ role: 'assistant', content: text });
+  } catch(e) {
+    removeBubble('thinking');
+    addChatBubble('ai', '⚠️ エラーが発生しました。');
+  }
+
+  document.getElementById('chatSendBtn').disabled = false;
+  isAiLoading = false;
+}
+
+function addChatBubble(role, text, id) {
+  const area = document.getElementById('chatArea');
+  const div = document.createElement('div');
+  div.className = `chat-bubble ${role}`;
+  if (id) div.id = id;
+  div.innerHTML = text;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+function removeBubble(id) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+function chatKeydown(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendChat();
+  }
+}
+
+async function copyAllCode() {
+  const btn = document.getElementById('copyBtnLabel');
+  try {
+    const res = await fetch(window.location.href);
+    const html = await res.text();
+    await navigator.clipboard.writeText(html);
+    btn.textContent = '✓ コピーしました！GitHubに貼り付けてください';
+    document.getElementById('copyCodeBtn').style.background = 'rgba(200,245,90,0.15)';
+    setTimeout(() => {
+      btn.textContent = 'GitHubに貼るコードをコピー';
+      document.getElementById('copyCodeBtn').style.background = '#1a1a1a';
+    }, 3000);
+  } catch(e) {
+    btn.textContent = '⚠️ 手動でファイルをダウンロードしてください';
+    setTimeout(() => { btn.textContent = 'GitHubに貼るコードをコピー'; }, 3000);
+  }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+updateDateDisplay();
+renderAll();
+</script>
+</body>
+</html>
